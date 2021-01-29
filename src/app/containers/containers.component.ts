@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 export interface PeriodicElement {
   name: string;
@@ -18,12 +18,18 @@ export interface Item {
   styleUrls: ['./containers.component.sass']
 })
 export class ContainersComponent implements OnInit {
+  @Input() slugId: string;
+
+  constructor() {
+    this.slugId = ""
+  }
+
   displayedColumns: string[] = ['ContainerNumber', 'Size'];
 
   items: Item[] = [];
 
   async ngOnInit(): Promise<void> {
-    const response = await fetch("https://run.mocky.io/v3/91144d14-cd24-4320-8f52-a241d6796b06");
+    const response = await fetch(`https://run.mocky.io/v3/${this.slugId}`);
     const data = await response.json();
     debugger;
     this.items = data.items;
