@@ -8,6 +8,7 @@ import { ImportComponent } from './import/import.component';
 import { ExportComponent } from './export/export.component';
 import { AllocationComponent } from './allocation/allocation.component';
 import { ContainersComponent } from './containers/containers.component';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ContainersComponent } from './containers/containers.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
