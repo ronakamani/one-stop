@@ -24,13 +24,18 @@ export class ContainersComponent implements OnInit {
   }
 
   displayedColumns: string[] = ['ContainerNumber', 'Size'];
+  filteredItems: Item[] = [];
   items: Item[] = [];
 
   ngOnInit() {
     this._Activatedroute.data.subscribe(async ({ slugId }) => {
       const response = await fetch(`https://run.mocky.io/v3/${slugId}`);
       const data = await response.json();
-      this.items = data.items;
+      this.items = this.filteredItems = data.items;
     });
+  }
+
+  containerNumberValueChange(event: any) {
+    this.filteredItems = this.items.filter(item => item.ContainerNumber.toUpperCase().includes(event.target.value.toUpperCase()))
   }
 }
