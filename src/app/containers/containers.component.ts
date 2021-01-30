@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 export interface PeriodicElement {
   name: string;
@@ -18,20 +19,18 @@ export interface Item {
   styleUrls: ['./containers.component.sass']
 })
 export class ContainersComponent implements OnInit {
-  @Input() slugId: string;
 
-  constructor() {
-    this.slugId = ""
+  constructor(private _Activatedroute: ActivatedRoute, private _router: Router) {
   }
 
   displayedColumns: string[] = ['ContainerNumber', 'Size'];
-
   items: Item[] = [];
 
-  async ngOnInit(): Promise<void> {
-    const response = await fetch(`https://run.mocky.io/v3/${this.slugId}`);
-    const data = await response.json();
-    debugger;
-    this.items = data.items;
+  ngOnInit() {
+    this._Activatedroute.data.subscribe(async ({ slugId }) => {
+      const response = await fetch(`https://run.mocky.io/v3/${slugId}`);
+      const data = await response.json();
+      this.items = data.items;
+    });
   }
 }

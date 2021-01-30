@@ -15,15 +15,15 @@ export class AppComponent {
       {
         label: 'import',
         link: './import',
-        index: 0
+        index: 0,
       }, {
         label: 'export',
         link: './export',
-        index: 1
+        index: 1,
       }, {
         label: 'allocation',
         link: './allocation',
-        index: 2
+        index: 2,
       },
     ];
   }
