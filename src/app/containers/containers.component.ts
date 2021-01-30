@@ -35,7 +35,25 @@ export class ContainersComponent implements OnInit {
     });
   }
 
+  containerNumberFilterValue: string = "";
+
   containerNumberValueChange(event: any) {
-    this.filteredItems = this.items.filter(item => item.ContainerNumber.toUpperCase().includes(event.target.value.toUpperCase()))
+    this.containerNumberFilterValue = event.target.value;
+    this.filter();
+    // this.filteredItems = this.items.filter(item => item.ContainerNumber.toUpperCase().includes(event.target.value.toUpperCase()))
+  }
+
+  sizeFilterValue: string = ""
+
+  sizeChange(event: any) {
+    this.sizeFilterValue = event.value;
+    this.filter();
+  }
+
+  filter() {
+    this.filteredItems = this.items.filter(item =>
+      (this.containerNumberFilterValue === "" || item.ContainerNumber.toUpperCase().includes(this.containerNumberFilterValue.toUpperCase()))
+      && (this.sizeFilterValue === "" || item.Size === Number.parseInt(this.sizeFilterValue))
+    )
   }
 }
