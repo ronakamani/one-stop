@@ -8,3 +8,14 @@ table
 
 .full-width
   width: 100%
+
+.container
+  display: flex
+  flex-direction: row
+
+.container-item
+  margin: 10px
+
+@media screen and (max-width: 700px)
+  .container
+    flex-direction: column-reverse
